@@ -1,0 +1,110 @@
+<div class="loading" *ngIf="!pokemonsLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="mdc-layout-grid" *ngIf="pokemonsLoading && pokemons">
+  <div class="mdc-layout-grid_inner mb-1">
+    <div class="mdc-layout-grid__cell--span-12">
+      <button mat-button routerLink="/">
+        <mat-icon>keyboard_backspace</mat-icon>
+        back
+      </button>
+    </div>
+  </div>
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell--span-4">
+      <img [src]="pokemons?.imageUrlHiRes" alt="">
+    </div>
+    <div class="mdc-layout-grid__cell--span-1"></div>
+    <div class="mdc-layout-grid__cell--span-7">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-10">
+          <span class="titleName">{{pokemons?.name}} </span>
+          <span class="superType">{{pokemons?.supertype}} - {{pokemons?.subtype}} </span>
+          <span class="idPokemon">#{{pokemons.id}}</span>
+        </div>
+        <div *ngIf="pokemons?.hp != 'None'" class="mdc-layout-grid__cell--span-2 d-flex">
+          <p class="hp">
+            HP {{pokemons?.hp}}
+            <i *ngFor="let type of pokemons?.types" class="energy {{type | lowercase}}"></i>
+          </p>
+        </div>
+      </div>
+      <hr/>
+      <div *ngIf="pokemons?.ability" class="mdc-layout-grid__inner mb-1">
+        <div class="mdc-layout-grid__cell--span-12">
+          <span class="abilityName">{{pokemons?.ability?.name}}</span>
+          <p class="abilityText">{{pokemons?.ability?.text}}</p>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__inner mb-1">
+        <div *ngFor="let attack of pokemons?.attacks" class="mdc-layout-grid__cell--span-12">
+          <span class="attackName">
+            <i *ngFor="let costs of attack.cost" class="energy {{costs | lowercase}}"></i>
+            {{attack?.name}}
+          </span>
+          <span *ngIf="attack?.damage.length > 0" class="damageAttack"> | {{attack?.damage}}</span>
+          <p class="attackText">{{attack?.text}}</p>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__inner text-center mb-1">
+        <div class="mdc-layout-grid__cell--span-4">
+          <p class="titleSmall">Weakness</p>
+          <span *ngFor="let weakness of pokemons?.weaknesses" class="textSmall">
+            <span *ngIf="weakness">
+              <i class="energy {{weakness.type | lowercase}}"></i>
+              {{weakness.value}}
+            </span>
+          </span>
+          <span *ngIf="!pokemons?.weaknesses" class="textSmall">
+            N/A
+          </span>
+        </div>
+        <div class="mdc-layout-grid__cell--span-4">
+          <p class="titleSmall">Resistances</p>
+          <span *ngFor="let resisteance of pokemons?.resistances" class="textSmall">
+            <span *ngIf="resisteance">
+              <i class="energy {{resisteance.type | lowercase}}"></i>
+              {{resisteance.value}}
+            </span>
+          </span>
+          <span *ngIf="!pokemons?.resistances" class="textSmall">
+            N/A
+          </span>
+        </div>
+        <div class="mdc-layout-grid__cell--span-4">
+          <p class="titleSmall">Retreat Cost</p>
+          <span *ngFor="let retreatCosts of pokemons?.retreatCost" class="textSmall">
+            <i class="energy {{retreatCosts | lowercase}}"></i>
+          </span>
+          <span *ngIf="!pokemons?.retreatCost" class="textSmall">
+            N/A
+          </span>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__inner text-center mb-1">
+        <div class="mdc-layout-grid__cell--span-4">
+          <p class="titleSmall">Artist</p>
+          <span class="textSmall">{{pokemons?.artist}}</span>
+          <span *ngIf="!pokemons?.artist" class="textSmall">
+            N/A
+          </span>
+        </div>
+        <div class="mdc-layout-grid__cell--span-4">
+          <p class="titleSmall">Rarity</p>
+          <span class="textSmall">{{pokemons?.rarity}}</span>
+          <span *ngIf="!pokemons?.rarity" class="textSmall">
+            N/A
+          </span>
+        </div>
+        <div class="mdc-layout-grid__cell--span-4">
+          <p class="titleSmall">Set</p>
+          <span class="textSmall">{{pokemons?.set}}</span>
+          <span *ngIf="!pokemons?.set" class="textSmall">
+            N/A
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

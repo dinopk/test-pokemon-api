@@ -1,0 +1,39 @@
+.mdc-layout-grid {
+  img {
+    width: 100%;
+  }
+
+  .titleName {
+    font-size: 2rem;
+  }
+  .superType {
+    font-size: 1.5rem;
+    color: #95a5a6;
+  }
+
+  .idPokemon {
+    font-size: 1rem;
+    color: #95a5a6;
+  }
+
+  .hp {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .attackName, .abilityName, .damageAttack {
+    font-size: 1.5rem;
+  }
+
+  .attackText, .abilityText {
+    font-size: 1rem;
+  }
+
+  .titleSmall {
+    text-transform: uppercase;
+  }
+
+  .textSmall {
+    font-size: 1.25rem;
+  }
+}

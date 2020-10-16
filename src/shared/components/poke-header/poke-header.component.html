@@ -1,0 +1,34 @@
+<header>
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-12-phone mdc-layout-grid__cell--span-12-tablet">
+      <img class="pokemonLogo" src="../../../assets/images/pokemon-logo.png" alt="Pokemon-Logo"/>
+    </div>
+    <div class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-12-phone mdc-layout-grid__cell--span-12-tablet search-box d-flex">
+      <mat-form-field appearance="outline">
+        <mat-label>Search for pokemon...</mat-label>
+        <input
+        matInput
+        type="text"
+        [(ngModel)]="search"
+        (ngModelChange)="searchInsert(search)"
+        placeholder=""
+      />
+        <mat-icon
+        class="cursor-pointer"
+        *ngIf="search"
+        matSuffix
+        aria-label="Clear"
+        (click)="searchInsert('')"
+        >
+          close
+        </mat-icon>
+        <mat-icon
+        *ngIf="!search"
+        matSuffix
+        >
+          search
+        </mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+</header>

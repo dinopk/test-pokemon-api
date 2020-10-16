@@ -1,0 +1,35 @@
+<div class="loading" *ngIf="!pokemonsLoading">
+  <mat-spinner color="primary"></mat-spinner>
+</div>
+
+<div class="mdc-layout-grid" *ngIf="pokemonsLoading && pokemons">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-12-phone mdc-layout-grid__cell--span-4-tablet"
+    *ngFor="let pokemon of pokemons | search: query">
+      <mat-card class="pokemon-card" (click)="goToDetails(pokemon.id)">
+        <div class="background-image">
+          <div class="frontCustom">
+            <div class="d-flex h-100">
+              <div>
+                <span class="infos d-block mb-1">
+                  {{pokemon.name}} / {{pokemon.id}}
+                  <i *ngFor="let type of pokemon.types" class="energy {{type | lowercase}}"></i>
+                </span>
+                <div class="d-flex">
+                  <button mat-button>
+                    <mat-icon>add_circle</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img
+            mat-card-image
+            src="{{ pokemon.imageUrl }}"
+            alt="photo of {{ pokemon.name }}"
+          />
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
